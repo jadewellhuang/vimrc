@@ -15,6 +15,7 @@ endif
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+
 " General Settings
 
 set nocompatible	" not compatible with the old-fashion vi mode
@@ -34,12 +35,12 @@ filetype plugin on    " Enable filetype-specific plugins
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
-
 syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 if has("gui_running")	" GUI color and font settings
-  set guifont=Osaka-Mono:h20
+  "set guifont=Osaka-Mono:h20
+  set guifont=Monaco:h12
   set background=dark 
   set t_Co=256          " 256 color mode
   set cursorline        " highlight current line
@@ -66,6 +67,7 @@ set copyindent		" copy the previous indentation on autoindenting
 set ignorecase		" ignore case when searching
 set smartcase		" ignore case if search pattern is all lowercase,case-sensitive otherwise
 set smarttab		" insert tabs on the start of a line according to context
+set number              " set line number in the file
 
 " disable sound on errors
 set noerrorbells
@@ -75,8 +77,8 @@ set tm=500
 
 " TAB setting{
    set expandtab        "replace <TAB> with spaces
-   set softtabstop=3 
-   set shiftwidth=3 
+   set softtabstop=4 
+   set shiftwidth=4 
 
    au FileType Makefile set noexpandtab
 "}      							
@@ -162,6 +164,10 @@ map <S-L> gt
 map <C-t><C-t> :tabnew<CR>
 " close tab
 map <C-t><C-w> :tabclose<CR> 
+
+" go to next/preivous/delete buffer
+map gn :bn<CR>
+map gp :bp<CR>
 
 " ,/ turn off search highlighting
 nmap <leader>/ :nohl<CR>
@@ -317,7 +323,6 @@ let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
-
 " --- TagBar
 " toggle TagBar with F7
 nnoremap <silent> <F7> :TagbarToggle<CR> 
@@ -340,3 +345,44 @@ let g:gitgutter_enabled = 1
 " set ejs filetype to html
 au BufNewFile,BufRead *.ejs set filetype=html
 
+
+"20150420 Justin: Commenting blocks of code.
+autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+autocmd FileType conf,fstab       let b:comment_leader = '# '
+autocmd FileType tex              let b:comment_leader = '% '
+autocmd FileType mail             let b:comment_leader = '> '
+autocmd FileType vim              let b:comment_leader = '" '
+noremap <silent> <C-k><C-c> :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> <C-k><C-u> :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+set tags+=$VIM/vimfiles/tags/tags_cpp
+set tags+=$VIM/vimfiles/tags/tags_OpenCV
+set tags+=$VIM/vimfiles/tags/tags_Eigen
+set tags+=$VIM/vimfiles/tags/tags_OpenCL
+set tags+=$VIM/vimfiles/tags/tags_CUDA_OpenCL
+
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
+" 
+" " OmniCppComplete
+" let OmniCpp_NamespaceSearch = 1
+" let OmniCpp_GlobalScopeSearch = 1
+" let OmniCpp_ShowAccess = 1
+" let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+" let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+" let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+" let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+" let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" " automatically open and close the popup menu / preview window
+" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+" set completeopt=menuone,menu,longest,preview
+" 
+" 20160614 Justin: back to the original edited position when open the file
+"
+if has("autocmd")
+   autocmd BufRead *.txt set tw=78
+   autocmd BufReadPost *
+      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+      \   exe "normal g'\"" |
+      \ endif
+endif
