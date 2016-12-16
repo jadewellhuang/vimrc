@@ -1,0 +1,13 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Rotation	.\main.cpp	/^  Matrix3d Rotation;$/;"	l
+T	.\main.cpp	/^    typedef Eigen::Triplet<MYPRECISION> T;$/;"	t	file:
+TList	.\main.cpp	/^    vector<T> TList;$/;"	l
+a	.\main.cpp	/^    vector<int> a;$/;"	l
+image	.\main.cpp	/^    IplImage *image = cvCreateImage(cvSize(640, 480), IPL_DEPTH_8U, 3);$/;"	l
+main	.\main.cpp	/^int main(){$/;"	f	signature:()
+vi	.\main.cpp	/^    std::vector<int> vi;$/;"	l

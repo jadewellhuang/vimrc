@@ -386,3 +386,5 @@ if has("autocmd")
       \   exe "normal g'\"" |
       \ endif
 endif
+" 20161216 Justin: switch NERDTree with ctrl + n
+map <C-n> :NERDTreeToggle<CR>
