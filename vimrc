@@ -388,5 +388,3 @@ if has("autocmd")
 endif
 " 20161216 Justin: switch NERDTree with ctrl + n
 map <C-n> :NERDTreeToggle<CR>
-" 20161220 Justin: Add tagbar for browsing with <F8>
-nmap <F8> :TagbarToggle<CR>
