@@ -324,8 +324,8 @@ hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
 " --- TagBar
-" toggle TagBar with F7
-nnoremap <silent> <F7> :TagbarToggle<CR> 
+" toggle TagBar with F8
+nnoremap <silent> <F8> :TagbarToggle<CR> 
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
 
@@ -358,6 +358,7 @@ noremap <silent> <C-k><C-u> :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader
 
 set tags+=$VIM/vimfiles/tags/tags_cpp
 set tags+=$VIM/vimfiles/tags/tags_OpenCV
+set tags+=$VIM/vimfiles/tags/tags_OpenCV3
 set tags+=$VIM/vimfiles/tags/tags_Eigen
 set tags+=$VIM/vimfiles/tags/tags_OpenCL
 set tags+=$VIM/vimfiles/tags/tags_CUDA_OpenCL
@@ -387,4 +388,5 @@ if has("autocmd")
       \ endif
 endif
 " 20161216 Justin: switch NERDTree with ctrl + n
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <F7> :NERDTreeToggle<CR> 
