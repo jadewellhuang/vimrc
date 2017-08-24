@@ -324,8 +324,8 @@ hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 
 " --- TagBar
-" toggle TagBar with F8
-nnoremap <silent> <F8> :TagbarToggle<CR> 
+" toggle TagBar with F9
+nnoremap <silent> <F9> :TagbarToggle<CR> 
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
 
@@ -389,4 +389,4 @@ if has("autocmd")
 endif
 " 20161216 Justin: switch NERDTree with ctrl + n
 "map <C-n> :NERDTreeToggle<CR>
-nnoremap <silent> <F7> :NERDTreeToggle<CR> 
+nnoremap <silent> <F8> :NERDTreeToggle<CR> 
